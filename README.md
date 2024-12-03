@@ -14,10 +14,23 @@
 ```bash
 composer install
 ```
-c
+
 ```bash
-composer install
+php artisan key:generate
 ```
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+```bash
+php artisan serve
+```
+
 
 ## Running tests
 

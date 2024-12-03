@@ -20,6 +20,10 @@ php artisan key:generate
 ```
 
 ```bash
+php artisan migrate:fresh --seed
+```
+
+```bash
 npm install
 ```
 
@@ -30,7 +34,6 @@ npm run dev
 ```bash
 php artisan serve
 ```
-
 
 ## Running tests
 

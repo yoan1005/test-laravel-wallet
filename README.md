@@ -96,7 +96,7 @@ You must write tests for this features.
 
 Don't forget to write seeders & factories.
 
-## BONUS - Feature - Sync wallet balance
+### BONUS - Feature - Sync wallet balance
 
 You need to write an action that reconstitutes the balance of a portfolio from its transaction history.
 

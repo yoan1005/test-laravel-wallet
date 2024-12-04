@@ -73,6 +73,8 @@ Some Laravel tables are included :
 
 ## Tickets
 
+⚠️ Tests, factories & seeders are mandatory/required
+
 ### Bugfix - Error on login
 
 On first login after registering, this error is thrown:
@@ -80,13 +82,9 @@ On first login after registering, this error is thrown:
 Call to a member function transactions() on null
 ```
 
-You need to write a test to ensure that this error does not occur again.
-
 ### Feature - Notification when balance is low
 
 When a user balance is low (< 10€), he should be notified by email.
-
-You must write a test for this feature.
 
 ### Feature - Recurring transfers
 
@@ -108,12 +106,21 @@ If the user has a balance lower than the amount, the transfer should fail and th
 
 This feature must be available in the API and the front-end.
 
-You must write tests for this features.
+### BONUS - Feature - Taking out a loan
 
-Don't forget to write seeders & factories.
+As a user I can ask to take out a loan.
 
-### BONUS - Feature - Sync wallet balance
+**The credit is granted automatically if the following conditions are met:**
 
-You need to write an action that reconstitutes the balance of a portfolio from its transaction history.
+0-200 € :
+- If, over a 3-month period, the average account balance was above €100.
 
-You must write tests for this action.
+200-500 € :
+- If, over a 3-month period, the average account balance was over €300;
+- and the user has made at least 5 transfers over the same period.
+
+500-1000 € :
+- If over a 3-month period, the average account balance was above €500;
+- and the user has made at least 1 transfer representing at least 50% of this average balance over the last six months.
+
+Once the credit has been taken out, a recurring transfer (spread over 3 months) which the user cannot delete must be created, with a periodicity of 30 days.

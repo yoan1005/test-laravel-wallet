@@ -104,7 +104,10 @@ The transfer must also be executed immediately after its creation.
 
 If the user has a balance lower than the amount, the transfer should fail and the user should be notified by email.
 
-This feature must be available in the API and the front-end.
+- A POST api endpoint to create recurring transfer
+- A DELETE api endpoint to delete recurring transfer
+- A GET api endpoint to list recurring transfer (with their status)
+- Any kind of UI in the dashboard
 
 ### BONUS - Feature - Taking out a loan
 
@@ -124,3 +127,13 @@ As a user I can ask to take out a loan.
 - and the user has made at least 1 transfer representing at least 50% of this average balance over the last six months.
 
 Once the credit has been taken out, a recurring transfer (spread over 3 months) which the user cannot delete must be created, with a periodicity of 30 days.
+
+### BONUS - Question
+
+How can you ensure that recurring transfers are executed in the most optimal order?
+
+In particular, when a user has several recurring transfers to be executed on the same day?
+
+Example: at 2:00 AM my wallet is empty (0€), a debit (50€) is scheduled and an automatic transfer of 75€ from another user is also scheduled to be credited to the account.
+
+How would you ensure that as many transactions as possible are successful?

@@ -94,6 +94,7 @@ I want to define :
 - A start date
 - An end date
 - A frequency in days
+- An recipient email
 - An amount
 - A reason
 

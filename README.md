@@ -77,6 +77,8 @@ Some Laravel tables are included :
 
 ## Tickets
 
+To validate the test, the first 3 tickets must be functional and tested. Implementation is a second point that can be challenged.
+
 ⚠️ Tests, factories & seeders are mandatory/required
 
 ### Bugfix - Error on login

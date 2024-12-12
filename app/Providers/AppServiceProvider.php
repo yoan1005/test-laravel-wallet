@@ -4,16 +4,26 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Number;
+use App\Observers\WalletObserver;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Validation\Rules\Password;
+use App\Providers\TelescopeServiceProvider;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function register(): void {}
+    public function register(): void {
+
+        if ($this->app->environment('local') && class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
+
+    }
 
     public function boot(): void
     {
@@ -37,5 +47,7 @@ class AppServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(120)->by($request->user()?->id ?: $request->ip());
         });
+
+        Wallet::observe(WalletObserver::class);
     }
 }

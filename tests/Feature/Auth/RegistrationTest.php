@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-use function Pest\Laravel\assertAuthenticated;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
+use Illuminate\Support\Facades\Auth;
+use function Pest\Laravel\assertAuthenticated;
 
 test('registration screen can be rendered', function () {
     $response = get('/register');
@@ -21,5 +22,8 @@ test('new users can register', function () {
     ]);
 
     assertAuthenticated();
+
+    assert(Auth::user()->wallet()->exists());
+
     $response->assertRedirect(route('dashboard', absolute: false));
 });
